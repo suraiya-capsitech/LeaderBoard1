@@ -6,9 +6,15 @@ const path = require('path');
 // 1. Initialize Firebase
 let serviceAccount;
 if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-  // Read from environment variable (used in GitHub Actions)
-  serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-  // Fix for GitHub Actions sometimes escaping newlines in the private key
+  let secretValue = process.env.FIREBASE_SERVICE_ACCOUNT.trim();
+  
+  // If the secret doesn't start with '{', assume it's Base64 encoded
+  if (!secretValue.startsWith('{')) {
+    secretValue = Buffer.from(secretValue, 'base64').toString('utf8');
+  }
+
+  serviceAccount = JSON.parse(secretValue);
+  
   if (serviceAccount.private_key) {
     serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
   }
