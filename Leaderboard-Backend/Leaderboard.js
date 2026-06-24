@@ -20,7 +20,7 @@ if (process.env.FIREBASE_SERVICE_ACCOUNT) {
   }
 } else {
   // Read from local file (used for local testing)
-  const serviceAccountPath = path.join(__dirname, 'leaderboard-f251e-firebase-adminsdk-fbsvc-f6e4b962c1.json');
+  const serviceAccountPath = path.join(__dirname, 'leaderboard-f251e-firebase-adminsdk-fbsvc-d7742c88ff.json');
   serviceAccount = require(serviceAccountPath);
 }
 

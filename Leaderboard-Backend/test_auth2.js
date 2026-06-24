@@ -1,7 +1,7 @@
 const { initializeApp, cert } = require('firebase-admin/app');
 const { getFirestore } = require('firebase-admin/firestore');
 
-const path = './leaderboard-f251e-firebase-adminsdk-fbsvc-f6e4b962c1.json';
+const path = './leaderboard-f251e-firebase-adminsdk-fbsvc-d7742c88ff.json';
 const serviceAccount = require(path);
 
 // Pass object
