@@ -8,6 +8,10 @@ let serviceAccount;
 if (process.env.FIREBASE_SERVICE_ACCOUNT) {
   // Read from environment variable (used in GitHub Actions)
   serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+  // Fix for GitHub Actions sometimes escaping newlines in the private key
+  if (serviceAccount.private_key) {
+    serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+  }
 } else {
   // Read from local file (used for local testing)
   const serviceAccountPath = path.join(__dirname, 'leaderboard-f251e-firebase-adminsdk-fbsvc-f6e4b962c1.json');
