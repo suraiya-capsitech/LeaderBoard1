@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-25T07:21:32.534Z",
-  "totalPlayers": 5,
+  "updatedAt": "2026-06-25T08:41:36.255Z",
+  "totalPlayers": 6,
   "players": [
     {
       "rank": 1,
@@ -29,6 +29,12 @@
     {
       "rank": 5,
       "playerId": "aYAbffX1aTF0WgIpoIVv",
+      "playerName": "Unknown",
+      "score": 0
+    },
+    {
+      "rank": 6,
+      "playerId": "jnkJUvlHiytr2kE0Pf19",
       "playerName": "Unknown",
       "score": 0
     }

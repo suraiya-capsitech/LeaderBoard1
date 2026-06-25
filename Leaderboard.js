@@ -20,7 +20,7 @@ if (process.env.FIREBASE_SERVICE_ACCOUNT) {
   }
 } else {
   // Read from local file (used for local testing)
-  const serviceAccountPath = path.join(__dirname, 'leaderboard-f251e-firebase-adminsdk-fbsvc-dd80814338.json');
+  const serviceAccountPath = path.join(__dirname, 'leaderboard-f251e-firebase-adminsdk-fbsvc-62b2aad759.json');
   serviceAccount = require(serviceAccountPath);
 }
 console.log("Secret exists:", !!process.env.FIREBASE_SERVICE_ACCOUNT);
