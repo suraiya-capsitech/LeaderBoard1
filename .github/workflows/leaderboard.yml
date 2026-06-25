@@ -4,8 +4,9 @@ on:
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
-  concurrency:
-  group: leaderboard-update
+
+concurrency:
+  group: leaderboard
   cancel-in-progress: true
 
 permissions:
@@ -18,8 +19,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,40 +37,7 @@ jobs:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: node Leaderboard.js
 
-      name: Auto-Update Leaderboard (GitHub Pages)
-
-on:
-  schedule:
-    - cron: "*/15 * * * *"
-  workflow_dispatch:
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
-jobs:
-  update-leaderboard:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Generate Leaderboard JSON
-        env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: node Leaderboard.js
-
-      - name: Commit and Push Changes
+      - name: Commit Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -75,14 +45,21 @@ jobs:
           git add public/leaderboard.json
 
           if git diff --cached --quiet; then
-            echo "No changes."
-          else
-            git commit -m "chore: update leaderboard.json"
-            git pull --rebase origin main
-            git push origin main
+            echo "No changes to commit."
+            exit 0
           fi
 
-      - name: Setup GitHub Pages
+          git commit -m "chore: update leaderboard.json"
+
+      - name: Pull latest changes
+        run: |
+          git pull --rebase origin main
+
+      - name: Push changes
+        run: |
+          git push origin HEAD:main
+
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v4
 
       - name: Upload Pages Artifact
@@ -90,8 +67,5 @@ jobs:
         with:
           path: ./public
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy GitHub Pages
         uses: actions/deploy-pages@v4
-
-
-     
