@@ -1,5 +1,11 @@
-# Godot 4+ specific ignores
+# Godot
 .godot/
 /android/
-"*.json" 
-leaderboard-f251e-firebase-adminsdk-fbsvc-f6e4b962c1.json
+
+# Ignore Firebase service account keys
+leaderboard-f251e-firebase-adminsdk-*.json
+
+# Keep these JSON files tracked
+!package.json
+!package-lock.json
+!firebase.json
