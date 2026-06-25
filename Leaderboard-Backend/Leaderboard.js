@@ -23,7 +23,14 @@ if (process.env.FIREBASE_SERVICE_ACCOUNT) {
   const serviceAccountPath = path.join(__dirname, 'leaderboard-f251e-firebase-adminsdk-fbsvc-d7742c88ff.json');
   serviceAccount = require(serviceAccountPath);
 }
+console.log("Secret exists:", !!process.env.FIREBASE_SERVICE_ACCOUNT);
 
+if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+    console.log("Secret length:", process.env.FIREBASE_SERVICE_ACCOUNT.length);
+}
+
+console.log("Project:", serviceAccount.project_id);
+console.log("Email:", serviceAccount.client_email);
 initializeApp({
   credential: cert(serviceAccount)
 });
