@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-25T12:15:34.160Z",
-  "totalPlayers": 10,
+  "updatedAt": "2026-06-25T12:30:46.998Z",
+  "totalPlayers": 11,
   "players": [
     {
       "rank": 1,
@@ -40,24 +40,30 @@
     },
     {
       "rank": 7,
+      "playerId": "g6PmwRRtmGyUeqKxgUGr",
+      "playerName": "Unknown",
+      "score": 12
+    },
+    {
+      "rank": 8,
       "playerId": "4ZonbGSBJmprVBQ8M3OC",
       "playerName": "Unknown",
       "score": 0
     },
     {
-      "rank": 8,
+      "rank": 9,
       "playerId": "VqiEc2bbpEjHw2ItYcL0",
       "playerName": "Unknown",
       "score": 0
     },
     {
-      "rank": 9,
+      "rank": 10,
       "playerId": "aYAbffX1aTF0WgIpoIVv",
       "playerName": "Unknown",
       "score": 0
     },
     {
-      "rank": 10,
+      "rank": 11,
       "playerId": "jnkJUvlHiytr2kE0Pf19",
       "playerName": "Unknown",
       "score": 0
